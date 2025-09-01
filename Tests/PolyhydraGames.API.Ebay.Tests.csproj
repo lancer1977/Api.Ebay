@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework> 
+		<IsPackable>false</IsPackable>
+		<UserSecretsId>26d2164f-022c-490e-ab39-68fcec51d04b</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.8" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.8" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.35.0" /> 
+		<PackageReference Include="NUnit3TestAdapter" Version="5.1.0" />
+		<PackageReference Include="Moq" Version="4.20.72" />
+		<PackageReference Include="Moq.AutoMock" Version="3.5.0" />
+		<PackageReference Include="NUnit" Version="4.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Client\PolyhydraGames.API.Ebay.csproj" />
+	</ItemGroup>
+</Project>
