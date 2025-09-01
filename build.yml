@@ -1,5 +1,5 @@
 # Starter pipeline
-name: 1.0.5.$(rev:r)
+name: 1.0.0.$(rev:r)
 variables: 
 - name: Project.Path
   value: '**/PolyhydraGames.API.Ebay.csproj'
