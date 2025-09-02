@@ -37,21 +37,16 @@ namespace PolyhydraGames.API.Ebay.Tests
 
         }
 
-        public void BuildServiceProvider(Action<IServiceCollection> act)
+        public void BuildServiceProvider(Action<IServiceCollection>? act)
         {
             var services = new ServiceCollection();
 
             services.AddSingleton(LoggerFactory);
+            
             services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
-            services.AddSingleton(_configuration);
-            services.AddSingleton(x =>
-            {
-                var config = x.GetService<IConfiguration>();
-                var creds = config.GetSection("Ebay").Get<OAuthCreds>();
-                return creds;
-            });
+            services.AddSingleton(_configuration); 
             services.AddEbayOAuth(_configuration);
-            act.Invoke(services);
+            act?.Invoke(services);
             ServiceProvider = services.BuildServiceProvider();
         }
 

@@ -12,20 +12,12 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddEbayOAuth(this IServiceCollection services, IConfiguration configure)
     {
 
-        var configs = configure.GetSection("Ebay").Get<OAuthCreds>();
-        var opts = new EbayOAuthOptions
-        {
-            ClientId = configs.ClientID,
-            ClientSecret = configs.ClientSecret,
-            RedirectUriRuName = configs.RedirectUriRuName,
-            Scopes =  string.Join(' ', new[]
-            {
-                "https://api.ebay.com/oauth/api_scope/sell.inventory",
-                "https://api.ebay.com/oauth/api_scope/sell.account"
-            }),
-        }; 
-        opts.Validate();
-        services.AddSingleton(opts);
+        var configs = configure.GetSection("Ebay").Get<EbayOAuthOptions>();
+
+        configs.Validate();
+        services.AddSingleton(configs);
+        services.AddSingleton<EbayAppClient>();
+        services.AddSingleton<EbayOAuthClient>();
         services.AddHttpClient<EbayOAuthClient>();
         return services;
     }
