@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework> 
+		<TargetFramework>net10.0</TargetFramework> 
 		<IsPackable>false</IsPackable>
 		<UserSecretsId>26d2164f-022c-490e-ab39-68fcec51d04b</UserSecretsId>
 	</PropertyGroup>
