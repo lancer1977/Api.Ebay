@@ -2,7 +2,7 @@
 name: 1.0.0.$(rev:r)
 variables: 
 - name: Project.Path
-  value: '**/PolyhydraGames.API.Ebay.csproj'
+  value: 'src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj'
 - name: BuildConfiguration
   value: Release
 trigger:
@@ -11,7 +11,9 @@ trigger:
     - refs/heads/main
   paths:
     include:
-    - Client
+    - src/PolyhydraGames.API.Ebay
+    - Api.Ebay.sln
+    - build.yml
 
 jobs:
 - job: Phase_1 
@@ -29,6 +31,7 @@ jobs:
   - task: DotNetCoreCLI@2
     inputs:
       command: 'pack'
+      projects: '$(Project.Path)'
       versioningScheme: 'byBuildNumber'
       arguments: '-c $(BuildConfiguration) --no-restore' 
   - task: DotNetCoreCLI@2
