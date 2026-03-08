@@ -1,7 +1,15 @@
-# Documentation
+# Api.Ebay
 
-This folder contains repository-level documentation.
+Text-to-Speech API integration for Polyhydra Games.
 
 ## Contents
 
-- `REPOSITORY-STRUCTURE.md` — expected layout and conventions for source, tests, docs, and scripts.
+- [api.ebay](docs/api.ebay.md)
+
+## Roadmap
+
+- [v1](docs/roadmap/v1/README.md)
+
+## Decisions
+
+- [Template](docs/decisions/0000-template.md)
