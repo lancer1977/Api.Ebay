@@ -1,0 +1,26 @@
+{
+  "repo": "Api.Ebay",
+  "path": "/home/lancer1977/code/APIs/Api.Ebay",
+  "scannedAt": "2026-03-08T04:41:20Z",
+  "projects": [
+    {
+      "name": "PolyhydraGames.API.Ebay",
+      "path": "src/PolyhydraGames.API.Ebay",
+      "projectReferences": [""],
+      "nugetPackages": ["Microsoft.Extensions.Logging.Abstractions","Microsoft.Extensions.Http","Spectre.Console"],
+      "hasServiceCollection": true,
+      "hasConfig": false,
+      "sourceFileCount": 9
+    }
+
+  ],
+  "keyInterfaces": [
+
+  ],
+  "topLevelFolders": [
+    "docs",
+    "scripts",
+    "src",
+    "tests",
+  ]
+}
