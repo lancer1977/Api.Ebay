@@ -2,6 +2,15 @@
 
 A minimal C# OAuth client for eBay Authorization Code flow, including consent URL generation, code exchange, and refresh token support.
 
+## Tags
+
+- dotnet
+- api
+- api-ebay
+- auth
+- docs
+- ebay
+
 ## Repository layout
 
 This repository has been organized into a more standard structure:
