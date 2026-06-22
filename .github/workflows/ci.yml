@@ -2,28 +2,45 @@ name: ci
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
+    paths:
+      - "src/PolyhydraGames.API.Ebay/**"
+      - "Api.Ebay.sln"
+      - ".github/workflows/ci.yml"
   pull_request:
-    branches: ["main"]
-  workflow_dispatch:
-
-permissions:
-  contents: read
+    branches: [main]
+    paths:
+      - "src/PolyhydraGames.API.Ebay/**"
+      - "Api.Ebay.sln"
+      - ".github/workflows/ci.yml"
 
 jobs:
-  build-test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
-
-      - name: Restore
-        run: dotnet restore "Api.Ebay.sln"
-
-      - name: Build
-        run: dotnet build "Api.Ebay.sln" --configuration Release --no-restore
+      - name: Configure NuGet
+        run: |
+          cat > NuGet.Config <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <clear />
+              <add key="github" value="https://nuget.pkg.github.com/lancer1977/index.json" />
+              <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+            </packageSources>
+            <packageSourceCredentials>
+              <github>
+                <add key="Username" value="lancer1977" />
+                <add key="ClearTextPassword" value="${GHCR_TOKEN}" />
+              </github>
+            </packageSourceCredentials>
+          </configuration>
+          EOF
+        env:
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+      - run: dotnet restore src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj --configfile NuGet.Config
+      - run: dotnet pack src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj --configuration Release --no-restore --output ./artifacts -p:PackageVersion=${{ github.run_number }}
