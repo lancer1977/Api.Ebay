@@ -12,8 +12,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddEbayOAuth(this IServiceCollection services, IConfiguration configure)
     {
 
-        var configs = configure.GetSection("Ebay").Get<EbayOAuthOptions>();
-
+        var configs = configure.GetSection("Ebay").Get<EbayOAuthOptions>()
+            ?? throw new InvalidOperationException("Missing Ebay configuration section.");
         configs.Validate();
         services.AddSingleton(configs);
         services.AddSingleton<EbayAppClient>();

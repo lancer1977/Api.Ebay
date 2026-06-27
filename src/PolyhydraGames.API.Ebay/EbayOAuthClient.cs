@@ -48,7 +48,7 @@ public sealed class EbayOAuthClient : EbayClient
 {
 
 
-    public EbayOAuthClient(EbayOAuthOptions options, HttpClient httpClient = null) : base(options, httpClient)
+    public EbayOAuthClient(EbayOAuthOptions options, HttpClient? httpClient = null) : base(options, httpClient)
     {
     }
     public Uri GetConsentUrl(string? state = null, bool promptLogin = false, string? locale = null)

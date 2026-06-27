@@ -24,6 +24,12 @@ jobs:
       - name: Restore
         run: dotnet restore "Api.Ebay.sln"
 
+      - name: Test
+        run: dotnet test "Api.Ebay.sln" --no-restore --verbosity normal
+
+      - name: Smoke
+        run: bash scripts/smoke.sh --no-restore
+
       - name: Pack
         run: dotnet pack "src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj" --configuration Release --no-restore -p:PackageVersion=1.0.0.16 -o ./artifacts
 

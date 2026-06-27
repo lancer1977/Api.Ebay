@@ -1,12 +1,18 @@
-name: change-me
-repo_root: change-me
+name: Api.Ebay
+repo_root: .
 
-languages: []
-frameworks: []
+languages:
+  - csharp
+frameworks:
+  - dotnet
 
 ci:
-  build: []
-  test: []
+  build:
+    - dotnet build Api.Ebay.sln --no-restore
+    - dotnet pack src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj --configuration Release --no-restore --output ./artifacts/package
+  test:
+    - dotnet test Api.Ebay.sln --no-restore
+    - bash scripts/smoke.sh
 
 devstudio:
   runtime_model: three-agent

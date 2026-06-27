@@ -48,6 +48,7 @@ var consentUrl = oauth.GetConsentUrl(state: state, promptLogin: true);
 dotnet restore Api.Ebay.sln
 dotnet build Api.Ebay.sln
 dotnet test Api.Ebay.sln
+bash scripts/smoke.sh --no-restore
 ```
 
 ## Notes
@@ -61,5 +62,6 @@ See `docs/` for additional repository documentation.
 ## Documentation
 
 - [Docs Index](./docs/README.md)
+- [Deployment Runbook](./docs/deployment.md)
 - [Feature Index](./docs/features/README.md)
 - [Roadmap Index](./docs/roadmaps/README.md)

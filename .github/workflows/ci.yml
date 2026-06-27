@@ -5,13 +5,17 @@ on:
     branches: [main]
     paths:
       - "src/PolyhydraGames.API.Ebay/**"
+      - "tests/PolyhydraGames.API.Ebay.Tests/**"
       - "Api.Ebay.sln"
+      - "scripts/smoke.sh"
       - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
     paths:
       - "src/PolyhydraGames.API.Ebay/**"
+      - "tests/PolyhydraGames.API.Ebay.Tests/**"
       - "Api.Ebay.sln"
+      - "scripts/smoke.sh"
       - ".github/workflows/ci.yml"
 
 jobs:
@@ -42,5 +46,15 @@ jobs:
           EOF
         env:
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
-      - run: dotnet restore src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj --configfile NuGet.Config
+      - run: dotnet restore Api.Ebay.sln --configfile NuGet.Config
+      - run: dotnet build Api.Ebay.sln --no-restore
+      - run: dotnet test Api.Ebay.sln --no-restore --no-build --verbosity normal
+      - run: bash scripts/smoke.sh --no-restore
       - run: dotnet pack src/PolyhydraGames.API.Ebay/PolyhydraGames.API.Ebay.csproj --configuration Release --no-restore --output ./artifacts -p:PackageVersion=${{ github.run_number }}
+
+      - name: Upload package artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-ebay-packages
+          path: ./artifacts/*.nupkg
+          if-no-files-found: error

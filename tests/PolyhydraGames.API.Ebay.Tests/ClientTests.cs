@@ -2,6 +2,8 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Web;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using PolyhydraGames.API.Ebay;
 using PolyhydraGames.API.Ebay.Models;
@@ -25,6 +27,17 @@ public class ClientTests
         var ex = Assert.Throws<ArgumentException>(options.Validate);
 
         Assert.That(ex?.ParamName, Is.EqualTo(nameof(EbayOAuthOptions.Scopes)));
+    }
+
+    [Test]
+    public void AddEbayOAuth_RejectsMissingConfigurationSection()
+    {
+        var services = new ServiceCollection();
+        var configuration = new ConfigurationBuilder().Build();
+
+        var ex = Assert.Throws<InvalidOperationException>(() => services.AddEbayOAuth(configuration));
+
+        Assert.That(ex?.Message, Does.Contain("Missing Ebay configuration section"));
     }
 
     [Test]
