@@ -1,13 +1,6 @@
 # Api.Ebay Roadmap (v1)
 
-## Vision
-_What this API integration is trying to accomplish._
+This local planning file has been migrated. GitHub Issues are the canonical tracker.
 
-## Current Status
-- [ ] **In Progress** / [ ] **Stable** / [ ] **Stubbed**
-
-## Goals
-- 
-
-## Known Gaps
-- 
+Canonical GitHub issue: https://github.com/lancer1977/Api.Ebay/issues/6
+Original source kind: roadmap
